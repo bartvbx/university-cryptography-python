@@ -13,17 +13,12 @@ def caesar_cipher():
 
     result = ""
 
-    for i in range(len(message)):
-        if message[i].strip() == "":
-            result += " "
-            continue
-
-        index = characters.index(message[i])
-        
-        try:
-            result += characters[index + shift]
-        except IndexError:
-            result += characters[index + shift - len(characters)]
+    for i in message:
+        if i in characters:
+            index = characters.index(i)
+            result += characters[(index + shift) % len(characters)]
+        else:
+            result += i
     
     print("Your encrypted/decrypted message: " + result)
 
